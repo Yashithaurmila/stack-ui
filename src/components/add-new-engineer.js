@@ -7,7 +7,7 @@ export default class AddEngineer extends Component {
     super(props);
     this.onChangeId = this.onChangeId.bind(this);
     this.onChangeEngineerId = this.onChangeEngineerId.bind(this);
-    this.onChangeEngineerName = this.onChangeEngineerName()
+    this.onChangeEngineerName = this.onChangeEngineerName.bind(this);
     this.saveEngineer = this.saveEngineer.bind(this);
     this.newEngineer = this.newEngineer.bind(this);
  
@@ -17,6 +17,7 @@ export default class AddEngineer extends Component {
       engineerId:"",
       engineerName: "",
 
+      isCorrect:true,
 
       submitted: false
     };
@@ -61,8 +62,16 @@ export default class AddEngineer extends Component {
         console.log(response.data);
       })
       .catch(e => {
-        console.log(e);
-      });
+        console.log(e)
+
+        this.setState({
+
+          isCorrect:false
+        });
+
+          }
+
+      );
   }
 
   newEngineer() {
@@ -71,7 +80,7 @@ export default class AddEngineer extends Component {
       engineerId: "",
       engineerName: "",
 
-
+      isCorrect: true,
       submitted: false
     });
   }
@@ -79,6 +88,8 @@ export default class AddEngineer extends Component {
   render() {
     return (
         <div className="submit-form">
+          {this.state.isCorrect  ?(
+              <div>
           {this.state.submitted ? (
             <div>
               <h4>You submitted successfully!</h4>
@@ -115,12 +126,21 @@ export default class AddEngineer extends Component {
   
 
   
-              <button onClick={this.saveEngineer} className="btn btn-success">
+              <button onClick={this.saveEngineer} className="btn btn-success mt-3">
                 Submit
               </button>
             </div>
           )}
+              </div>
+              ) : (
+                  <div>
+                    <h3 >The Engineer does not belong to the Organization</h3>
+                  </div>
+
+              )}
+
         </div>
       );
+
   }
 }
