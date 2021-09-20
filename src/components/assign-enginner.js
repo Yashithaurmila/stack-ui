@@ -27,6 +27,7 @@ export default class AssignEngineer extends Component{
             instanceId: "",
             desc:"",
 
+            isAdded : true,
             submitted: false
         };
     }
@@ -93,6 +94,9 @@ export default class AssignEngineer extends Component{
                 console.log(response.data);
             })
             .catch(e => {
+                this.setState({
+                    isAdded :false
+                })
                 console.log(e);
             });
     }
@@ -112,6 +116,8 @@ export default class AssignEngineer extends Component{
 
         return (
             <div className="submit-form">
+                    {this.state.isAdded ? (
+                        <div>
                 {this.state.submitted ? (
                     <div>
                         <h4>You submitted successfully!</h4>
@@ -177,7 +183,11 @@ export default class AssignEngineer extends Component{
                         </button>
                     </div>
                 )}
-            </div>
+            </div> ) :(
+                <h3>Your not Authorized</h3>
+
+                        )}
+                </div>
         );
     }
 
