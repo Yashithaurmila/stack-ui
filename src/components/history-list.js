@@ -292,7 +292,7 @@ export default class HistorysList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a history item.........</p>
+              <p>Please click on a history item...</p>
             </div>
           )}
 
